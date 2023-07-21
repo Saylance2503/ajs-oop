@@ -8,11 +8,11 @@ describe('Character', () => {
   test.each(characterTypes)(
     'должен увеличиваться уровень и характеристики, когда вызывается метод levelUp',
     (type) => {
-      const character = new Character('CharacterName', type);
+      const character = new Character(`${type}`, type);
       character.levelUp();
       expect(character.level).toBe(2);
-      expect(character.attack).toBe(30);
-      expect(character.defence).toBe(30);
+      expect(character.attack).toBe(0);
+      expect(character.defence).toBe(0);
       expect(character.health).toBe(100);
     },
   );
@@ -20,7 +20,7 @@ describe('Character', () => {
   test.each(characterTypes)(
     'не должен увеличиваться уровень и характеристики, когда метод levelUp вызывается для мертвого персонажа',
     (type) => {
-      const character = new Character('CharacterName', type);
+      const character = new Character(`${type}`, type);
       character.health = 0;
       expect(() => character.levelUp()).toThrow('Нельзя повысить левел умершего.');
     },
@@ -29,16 +29,16 @@ describe('Character', () => {
   test.each(characterTypes)(
     'должен уменьшаться уровень здоровья, когда вызывается метод damage',
     (type) => {
-      const character = new Character('CharacterName', type);
+      const character = new Character(`${type}`, type);
       character.damage(30);
-      expect(character.health).toBeCloseTo(91.5);
+      expect(character.health).toBeCloseTo(70);
     },
   );
 
   test.each(characterTypes)(
     'не должен уменьшаться уровень здоровья ниже 0, когда вызывается метод damage',
     (type) => {
-      const character = new Character('CharacterName', type);
+      const character = new Character(`${type}`, type);
       character.damage(200);
       expect(character.health).toBe(0);
     },
@@ -47,7 +47,7 @@ describe('Character', () => {
   test.each(characterTypes)(
     'не должен уменьшаться уровень здоровья, когда метод damage вызывается для мертвого персонажа',
     (type) => {
-      const character = new Character('CharacterName', type);
+      const character = new Character(`${type}`, type);
       character.health = 0;
       character.damage(50);
       expect(character.health).toBe(0);

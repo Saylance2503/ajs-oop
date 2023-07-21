@@ -1,11 +1,11 @@
 /* eslint linebreak-style: ["error", "windows"] */
 
-import Undead from '../Undead';
+import Daemon from '../Daemon';
 
-describe('Undead', () => {
-  const character = new Undead('Undead');
+describe('Daemon', () => {
+  const character = new Daemon('Daemon');
   const correct = {
-    attack: 10, defence: 40, health: 100, level: 1, name: 'Undead', type: 'Undead',
+    attack: 10, defence: 40, health: 100, level: 1, name: 'Daemon', type: 'Daemon',
   };
 
   expect(character).toEqual(correct);
